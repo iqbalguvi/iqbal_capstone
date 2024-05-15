@@ -15,7 +15,7 @@ COPY . .
 
 # Build the React app
 RUN npm run build
-
+RUN npm install -g serve
 # Expose port 80 to the outside world
 EXPOSE 80
 
