@@ -1,18 +1,15 @@
+
+
 {
   "name": "iqbal-capstone",
   "version": "1.0.0",
-  "description": "Guvi zen capstone project",
-  "main": "index.html",
-  "scripts": {
-    "start": "node index.html"
-  },
-  "dependencies": {
+  "private": true,
+  "dependencies": { "Guvi zen capstone project",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-    
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3"
   },
-
-"scripts": {
+  "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
