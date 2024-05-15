@@ -1,11 +1,17 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_CREDENTIALS_ID = 'docker-hub-credentials'
+        DOCKER_HUB_REPO_DEV = 'iqbalguvi/my-react-app-dev'
+        DOCKER_HUB_REPO_PROD = 'iqbalguvi/my-react-app-prod'
+    }
+
     stages {
         stage('Build') {
             steps {
                 script {
-                    dockerImage = docker.build("my-react-app")
+                    dockerImage = docker.build("${DOCKER_HUB_REPO_DEV}")
                 }
             }
         }
@@ -15,8 +21,8 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-                        dockerImage.push("dev:latest")
+                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
+                        dockerImage.push("latest")
                     }
                 }
             }
@@ -27,8 +33,8 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-                        dockerImage.push("prod:latest")
+                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
+                        dockerImage.push("latest")
                     }
                 }
             }
